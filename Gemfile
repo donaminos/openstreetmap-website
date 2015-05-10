@@ -76,6 +76,9 @@ gem 'soap4r-ruby1.9'
 gem 'dalli'
 gem 'kgio'
 
+# AMN : Add algolia gem
+gem "algoliasearch-rails"
+
 # Gems useful for development
 group :development do
   gem 'vendorer'

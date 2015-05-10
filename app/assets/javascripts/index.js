@@ -13,6 +13,8 @@
 //= require index/note
 //= require index/new_note
 //= require router
+//= require algolia/v3/algoliasearch.min
+//= require index/algolia_search
 
 (function() {
   var loaderTimeout;
@@ -281,10 +283,11 @@ $(document).ready(function () {
   };
 
   var history = OSM.History(map);
-
+  // AMN : Add algolia uri
   OSM.router = OSM.Router(map, {
     "/":                           OSM.Index(map),
     "/search":                     OSM.Search(map),
+    "/algolia":                    OSM.AlgoliaSearch(),
     "/export":                     OSM.Export(map),
     "/note/new":                   OSM.NewNote(map),
     "/history/friends":            history,
@@ -319,6 +322,17 @@ $(document).ready(function () {
 
     if (OSM.router.route(this.pathname + this.search + this.hash))
       e.preventDefault();
+  });
+  
+  // AMN: catch input event on Algolia search form
+  $(".algolia_search_form input[name=as_query]").on("input", function(e) {
+    e.preventDefault();
+    var query = this.value;
+    if (query) {
+      OSM.router.route("/algolia?query=" + encodeURIComponent(query) + OSM.formatHash(map));
+    } else {
+      OSM.router.route("/" + OSM.formatHash(map));
+    }
   });
 
   $(".search_form").on("submit", function(e) {

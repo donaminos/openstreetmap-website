@@ -1326,6 +1326,7 @@ en:
       close: Close
     search:
       search: Search
+      algolia_search: Search for a city
       where_am_i: "Where am I?"
       where_am_i_title: Describe the current location using the search engine
       submit_text: "Go"

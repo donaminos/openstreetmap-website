@@ -1,0 +1,6 @@
+<!-- AMN : Add algolia search bar -->
+<form class="algolia_search_form">
+  <div class='query_wrapper'>
+    <%= text_field_tag "as_query", params[:as_query], :placeholder => t("site.search.algolia_search"), :autofocus => autofocus, :autocomplete => "off" %>
+  </div>
+</form>

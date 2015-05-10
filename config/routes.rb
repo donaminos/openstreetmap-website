@@ -239,6 +239,9 @@ OpenStreetMap::Application.routes.draw do
   match '/geocoder/search_osm_nominatim_reverse' => 'geocoder#search_osm_nominatim_reverse', :via => :get
   match '/geocoder/search_geonames_reverse' => 'geocoder#search_geonames_reverse', :via => :get
 
+  # AMN : Algolia Search
+  get '/algolia' => redirect('/') 
+
   # export
   match '/export/finish' => 'export#finish', :via => :post
   match '/export/embed' => 'export#embed', :via => :get
